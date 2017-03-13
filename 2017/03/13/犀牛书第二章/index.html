@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>犀牛书第二章.md | mayufo</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic|Open+Sans:700,400" />
+
+  <meta name="generator" content="mayufo">
+
+  
+  
+  
+
+  
+</head>
+
+
+<body class="post-template">
+
+  <header class="site-head"  style="background-image: url(//blog.ghost.org/content/images/2013/Nov/cover.png)" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="//blog.ghost.org/content/images/2013/Nov/bloglogo_1-1.png" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">mayufo</h1>
+            <h2 class="blog-description"></h2>
+        </div>
+    </div>
+</header>
+  
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2017-03-13T02:23:27.000Z" itemprop="datePublished">
+          2017-03-13
+      </time>
+    
+    
+    | 
+    <a href='/tags/javascript-book/'>javascript book</a>
+    
+    
+</span>
+    <h1 class="post-title">犀牛书第二章.md</h1>
+    <section class="post-content">
+      <h1 id="chapter-2-词法结构"><a href="#chapter-2-词法结构" class="headerlink" title="chapter 2 词法结构"></a>chapter 2 词法结构</h1><h2 id="字符集"><a href="#字符集" class="headerlink" title="字符集"></a>字符集</h2><p>  javascript 程序是Unicode字符集编写的。<br>  javascript 区分大小写。<br>  HTML 不区分大小写。<br>  Unicode允许多种方法进行编码，显示结果一样，但是处理方式不一样。</p>
+<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><p>  可以使用 // 或者 /**/注释，但是不能嵌套。(P27)</p>
+<h2 id="直接量"><a href="#直接量" class="headerlink" title="直接量"></a>直接量</h2><p> 可以直接使用的数据值</p>
+<h2 id="标识符和保留字"><a href="#标识符和保留字" class="headerlink" title="标识符和保留字"></a>标识符和保留字</h2><p>标识符就是用来对变量和函数进行命名，或者循环语句中位置标记<br>JavaScript必须以字母，下划线或$开始。<br>后接的可以字母，数字，下划线，美元符。（数字不能出现在首字母）<br>也可以用非英文语言或数字作为标识符，比如π<br>也不能使用保留字作为标识符。</p>
+<h2 id="可选分号"><a href="#可选分号" class="headerlink" title="可选分号"></a>可选分号</h2><p>语句用分号分开。（P30）<br>如果独占一行可以省略分号。<br>无法解析的两个例外</p>
+<ul>
+<li><code>return  break</code>和<code>continue</code>随后的表达式之间不能换行，系统会自动添加分号。</li>
+<li><code>++ --</code>作为表达式的后缀，应该和表达式在同一行。 否则，行尾将填补分号。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a</div><div class="line">a</div><div class="line">=</div><div class="line"><span class="number">3</span></div><div class="line"><span class="comment">//解析为</span></div><div class="line">   <span class="comment">// var a</span></div><div class="line">   <span class="comment">// a = 3</span></div></pre></td></tr></table></figure>
+<p>如果以  （ [ / + - 开始极有可能和之前语句合在一起解析。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> y = x+ f</div><div class="line">(a+b).toString()</div><div class="line"><span class="comment">//解析</span></div><div class="line"><span class="comment">//var y = x+ f(a+b).toString();</span></div></pre></td></tr></table></figure></p>
+<p>涉及return、break、continue。则不能换行</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">return</span></div><div class="line"><span class="literal">true</span></div><div class="line"> <span class="comment">//解析</span></div><div class="line"> <span class="comment">//teturn;</span></div><div class="line"> <span class="comment">//true</span></div></pre></td></tr></table></figure>
+<p>涉及到 ++ 或 –</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">x</div><div class="line">++</div><div class="line">y</div><div class="line"><span class="comment">//解析</span></div><div class="line"><span class="comment">//x;</span></div><div class="line"><span class="comment">//++y;</span></div></pre></td></tr></table></figure>
+
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>mayufo</h4>
+    <p>A designer, developer and entrepreneur. Spends his time travelling the world with a bag of kites. Likes journalism and publishing platforms.</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-twitter" href="http://twitter.com/share?url=https://mayufo.github.io/2017/03/13/犀牛书第二章/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://mayufo.github.io/2017/03/13/犀牛书第二章/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=https://mayufo.github.io/2017/03/13/犀牛书第二章/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <span class="page-number">•</span>
+    
+</nav>
+  <div id="comment" class="comments-area">
+    <h1 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h1>
+
+    
+</div>
+</main>
+
+
+  
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">mayufo</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+
+
+
+
+
+
+</body>
+</html>

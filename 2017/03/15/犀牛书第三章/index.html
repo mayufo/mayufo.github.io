@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="study,javascript,notebook," />
+  <meta name="keywords" content="javascript,notebook,study," />
 
 
 
@@ -93,7 +93,7 @@
 <meta property="og:url" content="https://mayufo.github.io/2017/03/15/犀牛书第三章/index.html">
 <meta property="og:site_name" content="mayufo">
 <meta property="og:description" content="重读犀牛书 第三章">
-<meta property="og:updated_time" content="2017-04-01T08:49:51.000Z">
+<meta property="og:updated_time" content="2017-04-02T06:37:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="犀牛书第三章">
 <meta name="twitter:description" content="重读犀牛书 第三章">
@@ -689,14 +689,14 @@
 <ul>
 <li><p>声明变量<br>var 声明 初始undefine</p>
 </li>
-<li><p>变量作用域<br>函数体内局部变量的优先级高于全局变量，声明局部变量时候一定写var 否则赋值就是给全局变量<br>JS使用函数作用域，变量在声明函数体以及这个函数体的任意嵌套都是有定义的。</p>
+<li><p>变量作用域<br>函数体内局部变量的优先级高于全局变量，声明局部变量时候一定写var 否则赋值就是给全局变量<br>js使用函数作用域，变量在声明函数体以及这个函数体的任意嵌套都是有定义的。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">function test(o)&#123;</div><div class="line"> </div><div class="line">    var i = 0;</div><div class="line">    if(typeof o == &quot;object&quot;)&#123;</div><div class="line">        var j = 0;</div><div class="line">        for(var k = 0; k &lt; 10 ; k++)&#123;</div><div class="line">            console.log(k);</div><div class="line">        &#125;</div><div class="line">        console.log(k);</div><div class="line">    &#125;</div><div class="line">    console.log(&apos;j =&apos; + j) // undefine</div><div class="line">&#125;</div><div class="line"> </div><div class="line">test(5);</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>JS 可以声明提前。<br>在函数体内局部变量遮盖了同名全局变量。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var name=&quot;global&quot;; </div><div class="line">if(true)&#123; </div><div class="line">    var name=&quot;local&quot;; </div><div class="line">    console.log(name)  //local</div><div class="line">&#125; </div><div class="line">console.log(name);  // local</div></pre></td></tr></table></figure></p>
-<p>当声明了一个Javascript全局变量时，实际是定义了全局对象的一个属性。如果没有通过var 声明变量，那么他们都可以通过delete删除。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">function t(flag)&#123; </div><div class="line">    if(flag)&#123; </div><div class="line">        s=&quot;ifscope&quot;; </div><div class="line">        for(var i=0;i&lt;2;i++)  </div><div class="line">            ; </div><div class="line">    &#125; </div><div class="line">    console.log(i); </div><div class="line">&#125; </div><div class="line">t(true); </div><div class="line">console.log(s);  // ifsope s是全局变量</div></pre></td></tr></table></figure></p>
-<p>JS 关键子来引用全局对象，却没有办法引用局部变量。</p>
-<p>JS最顶层代码中，作用域由一个全局对象组成。</p>
+<p>当声明了一个js全局变量时，实际是定义了全局对象的一个属性。如果没有通过var 声明变量，那么他们都可以通过delete删除。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">function t(flag)&#123; </div><div class="line">    if(flag)&#123; </div><div class="line">        s=&quot;ifscope&quot;; </div><div class="line">        for(var i=0;i&lt;2;i++)  </div><div class="line">            ; </div><div class="line">    &#125; </div><div class="line">    console.log(i); </div><div class="line">&#125; </div><div class="line">t(true); </div><div class="line">console.log(s);  // ifsope s是全局变量</div></pre></td></tr></table></figure></p>
+<p>js关键子来引用全局对象，却没有办法引用局部变量。</p>
+<p>js最顶层代码中，作用域由一个全局对象组成。</p>
 <p>不嵌套的函数体，有两个对象，一是函数参数和局部变量的对象，二是全局对象。</p>
 <p>嵌套函数至少在三个以上。</p>
 <p>当调用一个函数的时候，创建一个新的对象来存储它的局部变量，并将这个对象添加至保存的的那个作用域链上，同时创建一个新的更长的表示函数调用作用的“链”。</p>
@@ -724,11 +724,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/study/" rel="tag"># study</a>
-          
             <a href="/tags/javascript/" rel="tag"># javascript</a>
           
             <a href="/tags/notebook/" rel="tag"># notebook</a>
+          
+            <a href="/tags/study/" rel="tag"># study</a>
           
         </div>
       
@@ -825,7 +825,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -836,7 +836,7 @@
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">categories</span>
               
             </div>
@@ -847,7 +847,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">tags</span>
               
             </div>

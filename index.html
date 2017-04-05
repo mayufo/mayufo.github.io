@@ -443,7 +443,7 @@
               
                 
                 <a class="post-title-link" href="/2017/04/05/评级问题总结/" itemprop="url">
-                  评级问题总结
+                  问题总结
                 </a>
               
             
@@ -518,45 +518,14 @@
 
       
         
-          
-            <h1 id="BOM和DOM-含义，全拼"><a href="#BOM和DOM-含义，全拼" class="headerlink" title="BOM和DOM 含义，全拼"></a>BOM和DOM 含义，全拼</h1><p>document object model 文档对象模型，把文档当做一个对象来看待<br>browser object model 浏览器对象模型 把浏览器当做一个对象来看</p>
-<h1 id="javascript基础数据类型"><a href="#javascript基础数据类型" class="headerlink" title="javascript基础数据类型"></a>javascript基础数据类型</h1><p>数字、字符串、undefined、对象、null、boolean</p>
-<h1 id="如何判断数据类型："><a href="#如何判断数据类型：" class="headerlink" title="如何判断数据类型："></a>如何判断数据类型：</h1><p>typeof 常见类型的判断<br>instanceof 对已知对象类型的判断<br>其中typeof返回的类型都是字符串形式，在判断object类型是比较方便<br>instanceof 后面一定要是对象类型，并且大小写不能错，该方法适合一些条件选择或分支</p>
-<h1 id="如何判断一个数据是数组类型："><a href="#如何判断一个数据是数组类型：" class="headerlink" title="如何判断一个数据是数组类型："></a>如何判断一个数据是数组类型：</h1><p>constructor<br>instanceof<br>isArray</p>
-<h1 id="判断浮点数"><a href="#判断浮点数" class="headerlink" title="判断浮点数"></a>判断浮点数</h1><p>正则<br>将这个浮点数转为字符串，判断里面是否有点</p>
-<h1 id="作用域和全局变量考察"><a href="#作用域和全局变量考察" class="headerlink" title="作用域和全局变量考察"></a>作用域和全局变量考察</h1><h1 id="有一个div，它内部宽度不确定，我想让它相对于父元素垂直水平居中，如何设计？"><a href="#有一个div，它内部宽度不确定，我想让它相对于父元素垂直水平居中，如何设计？" class="headerlink" title="有一个div，它内部宽度不确定，我想让它相对于父元素垂直水平居中，如何设计？"></a>有一个div，它内部宽度不确定，我想让它相对于父元素垂直水平居中，如何设计？</h1><p>flex布局<br>line-height 垂直， margin: 0 auto<br>clentWidth - offsetWidth</p>
-<h1 id="html语义化的理解"><a href="#html语义化的理解" class="headerlink" title="html语义化的理解"></a>html语义化的理解</h1><p>便于开发者阅读和写出更优雅的代码的同时让浏览器的爬虫和机器很好地解析<br>方便其他设备解析</p>
-<h1 id="http状态码："><a href="#http状态码：" class="headerlink" title="http状态码："></a>http状态码：</h1><p>1 开头  代表消息<br>2 代表成功<br>3 重定向<br>4 请求错误<br>5，6 服务器错误</p>
-<h1 id="cookie，sessionStorage与localStorage区别"><a href="#cookie，sessionStorage与localStorage区别" class="headerlink" title="cookie，sessionStorage与localStorage区别"></a>cookie，sessionStorage与localStorage区别</h1><p>　共同点：都是保存在浏览器端，且同源的。</p>
-<p> 区别：cookie数据始终在同源的http请求中携带（即使不需要），即cookie在浏览器和服务器间来回传递；cookie数据还有路径（path）的概念，可以限制cookie只属于某个路径下。存储大小限制也不同，cookie数据不能超过4k，同时因为每次http请求都会携带cookie，所以cookie只适合保存很小的数据，如会话标识。</p>
-<p> 而sessionStorage和localStorage不会自动把数据发给服务器，仅在本地保存。sessionStorage和localStorage 虽然也有存储大小的限制，但比cookie大得多，可以达到5M或更大。</p>
-<p> 数据有效期不同，sessionStorage：仅在当前浏览器窗口关闭前有效，自然也就不可能持久保持；localStorage：始终有效，窗口或浏览器关闭也一直保存，因此用作持久数据；cookie只在设置的cookie过期时间之前一直有效，即使窗口或浏览器关闭。</p>
-<p> 作用域不同，sessionStorage不在不同的浏览器窗口中共享，即使是同一个页面；localStorage 在所有同源窗口中都是共享的；cookie也是在所有同源窗口中都是共享的。。</p>
-<h1 id="css3新特性"><a href="#css3新特性" class="headerlink" title="css3新特性"></a>css3新特性</h1><ul>
-<li>css3 选择器</li>
-<li>css3实现圆角（border-radius），阴影（box-shadow），</li>
-<li>对文字加特效（text-shadow、），线性渐变（gradient），旋转（transform）</li>
-<li>transform:rotate(9deg) scale(0.85,0.90) translate(0px,-30px) skew(-9deg,0deg);// 旋转,缩放,定位,倾斜</li>
-<li>增加了更多的CSS选择器  多背景 rgba</li>
-<li>在CSS3中唯一引入的伪元素是 ::selection.</li>
-<li>媒体查询，多栏布局</li>
-<li>border-image</li>
-</ul>
-<h1 id="css选择器"><a href="#css选择器" class="headerlink" title="css选择器"></a>css选择器</h1><ul>
-<li>兄弟选择器</li>
-<li>属性选择器</li>
-</ul>
-<h1 id="引入normalize的作用。"><a href="#引入normalize的作用。" class="headerlink" title="引入normalize的作用。"></a>引入normalize的作用。</h1><p>是保留浏览器的原来样式并且做到每个浏览显示一致</p>
-<h1 id="性能优化：减少请求、简化页面结构、优化代码、压缩机制、图片。"><a href="#性能优化：减少请求、简化页面结构、优化代码、压缩机制、图片。" class="headerlink" title="性能优化：减少请求、简化页面结构、优化代码、压缩机制、图片。"></a>性能优化：减少请求、简化页面结构、优化代码、压缩机制、图片。</h1><h1 id="css雪碧图的优缺点"><a href="#css雪碧图的优缺点" class="headerlink" title="css雪碧图的优缺点"></a>css雪碧图的优缺点</h1><p>优点：<br>减少请求，提升页面性能<br>减少图片的字节数<br>解决了图片命名的坤荣<br>更换风格方便统一<br>缺点<br>在图片合并的时候，多张图片合并在一张图片，要保留好足够的空间，防止出现不必要的背景图片<br>可维护性查，每次的修改都要在这个图片上修改，如果图片较多，你要记住位置<br>图片的位置需要固定绝对值定位，失去了灵活性</p>
-<h1 id="display有哪些值-none、block、inline、inline-block-table。img元素是什么元素？inline"><a href="#display有哪些值-none、block、inline、inline-block-table。img元素是什么元素？inline" class="headerlink" title="display有哪些值:none、block、inline、inline-block,table。img元素是什么元素？inline"></a>display有哪些值:none、block、inline、inline-block,table。img元素是什么元素？inline</h1><p>17、XMLHttpRequest原生</p>
-<h1 id="哪些事件会触发脏检查？"><a href="#哪些事件会触发脏检查？" class="headerlink" title="哪些事件会触发脏检查？"></a>哪些事件会触发脏检查？</h1><p>当在view绑定数据，触发事件都会触发脏检测 ng-model ng-click</p>
-<h1 id="digest和-apply有什么区别？"><a href="#digest和-apply有什么区别？" class="headerlink" title="$digest和$apply有什么区别？"></a>$digest和$apply有什么区别？</h1><p>$scope.$apply()会自动调用$rootScope.$digest()。$apply()函数可以以两种方式运行。第一种是将函数作为参数，并且评估他，然后触发$digest循环。第二种并不传入任何参数，仅仅是执行一个$digest循环。<br>如果我们更改一个不在AngularJS执行上下文中的数据模型(model)，就需要人为的调用$apply()来提醒AngularJS数据发生变化了。就像是要告诉AngularJS，我们改变了一些数据，他应该启用监听器以便于让我们所做的改变能够反映出来。<br>当你为$apply()传入函数的时候，这个函数在调用的时候是包含在try..catch中的，并且，任何发生的异常都能够被$exceptionHandler服务所接收。</p>
-<blockquote>
-<p><a href="https://segmentfault.com/a/1190000004523893" target="_blank" rel="external">https://segmentfault.com/a/1190000004523893</a></p>
-</blockquote>
-<h1 id="数据请求和前端资源优化？"><a href="#数据请求和前端资源优化？" class="headerlink" title="数据请求和前端资源优化？"></a>数据请求和前端资源优化？</h1><p>配置超长时间的本地缓存 —— 节省带宽，提高性能<br>采用内容摘要作为缓存更新依据 —— 精确的缓存控制<br>静态资源CDN部署 —— 优化网络请求<br>资源发布路径实现非覆盖式发布 —— 平滑升级</p>
-
-          
+          <p>记录之前面试的总结..</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/05/评级问题总结/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

@@ -1,0 +1,982 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="面试，js," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="看妙味课堂前端面试题的一些总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Interview_Javascript">
+<meta property="og:url" content="https://mayufo.github.io/2017/04/08/perfectionkill-js/index.html">
+<meta property="og:site_name" content="mayufo">
+<meta property="og:description" content="看妙味课堂前端面试题的一些总结">
+<meta property="og:updated_time" content="2017-04-09T06:54:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Interview_Javascript">
+<meta name="twitter:description" content="看妙味课堂前端面试题的一些总结">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://mayufo.github.io/2017/04/08/perfectionkill-js/"/>
+
+
+
+
+
+  <title> Interview_Javascript | mayufo </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">mayufo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://mayufo.github.io/2017/04/08/perfectionkill-js/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="mayufo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="mayufo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Interview_Javascript
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-08T00:05:25+08:00">
+                2017-04-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/miaov/" itemprop="url" rel="index">
+                    <span itemprop="name">miaov</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>看妙味课堂前端面试题的一些总结</p>
+<a id="more"></a>
+<h1 id="lesson1"><a href="#lesson1" class="headerlink" title="lesson1"></a>lesson1</h1><h3 id="1"><a href="#1" class="headerlink" title="1"></a>1</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">typeof</span> <span class="built_in">arguments</span>;</div><div class="line">&#125;) ();  <span class="comment">// 'object'</span></div></pre></td></tr></table></figure>
+<p><code>arguments</code>只是个类数组</p>
+<h3 id="2"><a href="#2" class="headerlink" title="2"></a>2</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> f = <span class="function"><span class="keyword">function</span> <span class="title">g</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="number">23</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">typeof</span>  g();  <span class="comment">// error</span></div></pre></td></tr></table></figure>
+<h3 id="3"><a href="#3" class="headerlink" title="3"></a>3</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123;</div><div class="line">  <span class="keyword">delete</span> x;</div><div class="line">  <span class="keyword">return</span> x;</div><div class="line">&#125;)(<span class="number">1</span>); <span class="comment">//  1</span></div></pre></td></tr></table></figure>
+<p>delete 只能删除数组或者对象</p>
+<h3 id="4"><a href="#4" class="headerlink" title="4"></a>4</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> y = <span class="number">1</span>, x = y = <span class="keyword">typeof</span> x;</div><div class="line">x; <span class="comment">// 'undefined'</span></div></pre></td></tr></table></figure>
+<p>运算顺序从右向左</p>
+<h3 id="5"><a href="#5" class="headerlink" title="5"></a>5</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">f</span>)</span>&#123;</div><div class="line">   <span class="keyword">return</span> <span class="keyword">typeof</span> f();</div><div class="line"> &#125;)(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="number">1</span>; &#125;); <span class="comment">// 'number'</span></div></pre></td></tr></table></figure>
+<p>传进去整个函数 返回1</p>
+<h3 id="6"><a href="#6" class="headerlink" title="6"></a>6</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo = &#123;</div><div class="line">  <span class="attr">bar</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="keyword">this</span>.baz; &#125;,</div><div class="line">  <span class="attr">baz</span>: <span class="number">1</span></div><div class="line">&#125;;</div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">typeof</span> <span class="built_in">arguments</span>[<span class="number">0</span>]();</div><div class="line">&#125;)(foo.bar); <span class="comment">// 'undefined'</span></div></pre></td></tr></table></figure>
+<p>此处this指向window arguemnts[0] 为undefined</p>
+<h3 id="7"><a href="#7" class="headerlink" title="7"></a>7</h3> <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo = &#123;</div><div class="line">  <span class="attr">bar</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="keyword">this</span>.baz; &#125;,</div><div class="line">  <span class="attr">baz</span>: <span class="number">1</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">typeof</span> (f = foo.bar)(); <span class="comment">// 同上</span></div></pre></td></tr></table></figure>
+<p> 同上</p>
+<h3 id="8"><a href="#8" class="headerlink" title="8"></a>8</h3> <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> f = (<span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="string">"1"</span>; &#125;, <span class="function"><span class="keyword">function</span> <span class="title">g</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="number">2</span>; &#125;)();</div><div class="line"> <span class="keyword">typeof</span> f;  <span class="comment">// 2</span></div></pre></td></tr></table></figure>
+<p>这种括号的运算符，会弹出最后一个值</p>
+<h3 id="9"><a href="#9" class="headerlink" title="9"></a>9</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</div><div class="line"> <span class="keyword">if</span> (<span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;&#125;) &#123;</div><div class="line">   x += <span class="keyword">typeof</span> f;</div><div class="line"> &#125;</div><div class="line"> x;  <span class="comment">// 'iundefined'</span></div></pre></td></tr></table></figure>
+<p><code>if</code> 里面的函数运算是true, 而f没有定义 <code>undfined</code> </p>
+<h3 id="10"><a href="#10" class="headerlink" title="10"></a>10</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">var</span> x = [<span class="keyword">typeof</span> x, <span class="keyword">typeof</span> y][<span class="number">1</span>];</div><div class="line"><span class="keyword">typeof</span> <span class="keyword">typeof</span> x; <span class="comment">// 'string'</span></div></pre></td></tr></table></figure>
+<p>typeof 输出的类型是字符串类型</p>
+<h3 id="11"><a href="#11" class="headerlink" title="11"></a>11</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">foo</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">typeof</span> foo.bar;</div><div class="line">&#125;)(&#123; <span class="attr">foo</span>: &#123; <span class="attr">bar</span>: <span class="number">1</span> &#125; &#125;); <span class="comment">// 'undefined'</span></div></pre></td></tr></table></figure>
+<p><code>{ foo: { bar: 1 } }</code> 作为整个实参传入 而调用的只用一个属性就是 <code>foo</code></p>
+<h3 id="12"><a href="#12" class="headerlink" title="12"></a>12</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="number">1</span>; &#125;</div><div class="line">  <span class="keyword">return</span> f();</div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="number">2</span>; &#125;</div><div class="line">&#125;)();  <span class="comment">// 2</span></div></pre></td></tr></table></figure>
+<p>跟进预解析个规则，会先走一遍所有的function </p>
+<h3 id="13"><a href="#13" class="headerlink" title="13"></a>13</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> f; &#125;</div><div class="line">  <span class="keyword">new</span> f() <span class="keyword">instanceof</span> f; <span class="comment">// false</span></div></pre></td></tr></table></figure>
+<p>instanceof 的作用是看前面的数据 是否是后面的的构造函数，但是如果这个构造函数里面存在return,就指向了return的数据</p>
+<h3 id="14"><a href="#14" class="headerlink" title="14"></a>14</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">with</span> (<span class="function"><span class="keyword">function</span>(<span class="params">x, undefined</span>)</span>&#123;&#125;) length; <span class="comment">// 2</span></div></pre></td></tr></table></figure>
+<p>形参的个数</p>
+<h1 id="lesson-2-运行题"><a href="#lesson-2-运行题" class="headerlink" title="lesson 2 运行题"></a>lesson 2 运行题</h1><h3 id="变量的作用域"><a href="#变量的作用域" class="headerlink" title="变量的作用域"></a>变量的作用域</h3><p>外层的变量，内层可以找到（全局）<br>内层的变量，外层找不到（局部）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">10</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">aaa</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    alert(a);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bbb</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> a = <span class="number">20</span>;</div><div class="line">    aaa();</div><div class="line">&#125;</div><div class="line"></div><div class="line">bbb ();  <span class="comment">// 10</span></div></pre></td></tr></table></figure>
+<p>涉及到作用域的问题， 运行到bbb() 返回到 bbb()函数里面 遇到aaa() ,返回aaa(),只能找到外层的10</p>
+<h3 id="变量不加-var-它会变成全局变量"><a href="#变量不加-var-它会变成全局变量" class="headerlink" title="变量不加 var 它会变成全局变量"></a>变量不加 <code>var</code> 它会变成全局变量</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">aaa</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> a = b = <span class="number">10</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">aaa()</div><div class="line"></div><div class="line">alert(a)  <span class="comment">// 局部变量undefined</span></div><div class="line">alert(b) <span class="comment">// 全局变量 弹出 10</span></div></pre></td></tr></table></figure>
+<h3 id="变量的查找是就近原则去寻找var定义的变量，当就近没有找到，就会查找外城，-如果没有找到，找外层的外层"><a href="#变量的查找是就近原则去寻找var定义的变量，当就近没有找到，就会查找外城，-如果没有找到，找外层的外层" class="headerlink" title="变量的查找是就近原则去寻找var定义的变量，当就近没有找到，就会查找外城， 如果没有找到，找外层的外层"></a>变量的查找是就近原则去寻找var定义的变量，当就近没有找到，就会查找外城， 如果没有找到，找外层的外层</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">10</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">aaa</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  alert(a);  <span class="comment">// 就近查找发现var, 函数做预解析， 所以变量是undefined.所以在定义变量的时候要写在上面，防止出现undefined</span></div><div class="line">  <span class="keyword">var</span> a = <span class="number">20</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">aaa();  <span class="comment">// undefined</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">10</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">aaa</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> a = <span class="number">20</span>;</div><div class="line"></div><div class="line">  alert(a);  <span class="comment">// 20 寻找就近var定义的变量，</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">aaa();</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">10</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">aaa</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  a = <span class="number">20</span>;</div><div class="line"></div><div class="line">  alert(a);  <span class="comment">// 20 寻找就近var定义的变量,寻找到外层定义的a,a进函数后被替换成20</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">aaa();</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">10</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">aaa</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">  alert(a);  <span class="comment">// 10</span></div><div class="line">    a = <span class="number">20</span>;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">aaa();</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">10</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">aaa</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    </div><div class="line">  bbb();</div><div class="line">  alert(a);  <span class="comment">// 10</span></div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">bbb</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> a = <span class="number">20</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="参数和局部变量重名的时候，优先级是等同，不分彼此"><a href="#参数和局部变量重名的时候，优先级是等同，不分彼此" class="headerlink" title="参数和局部变量重名的时候，优先级是等同，不分彼此"></a>参数和局部变量重名的时候，优先级是等同，不分彼此</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">10</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">aaa</span>(<span class="params">a</span>) </span>&#123;</div><div class="line">  alert(a);</div><div class="line">  <span class="keyword">var</span> a = <span class="number">20</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">aaa(a);  <span class="comment">// 10</span></div></pre></td></tr></table></figure>
+<h3 id="基本类型赋值不存在引用关系，对象类型赋值才存在引用关系-除非对象重新赋值，导致地址断开"><a href="#基本类型赋值不存在引用关系，对象类型赋值才存在引用关系-除非对象重新赋值，导致地址断开" class="headerlink" title="基本类型赋值不存在引用关系，对象类型赋值才存在引用关系,除非对象重新赋值，导致地址断开"></a>基本类型赋值不存在引用关系，对象类型赋值才存在引用关系,除非对象重新赋值，导致地址断开</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">5</span>;</div><div class="line"><span class="keyword">var</span> b = a;</div><div class="line"></div><div class="line">b += <span class="number">3</span>;</div><div class="line"></div><div class="line">alert(a); <span class="comment">// 8 基本类型赋值不存在引用关系</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</div><div class="line"></div><div class="line"><span class="keyword">var</span> b = a ;</div><div class="line">b.push(<span class="number">4</span>);</div><div class="line"></div><div class="line">alert(a);  <span class="comment">// [1,2,3,4]</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</div><div class="line"></div><div class="line"><span class="keyword">var</span> b = a ;</div><div class="line">b = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>];</div><div class="line"></div><div class="line">alert(a);  <span class="comment">// [1,2,3]  对象赋值后，地址断开</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">10</span>; </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">aaa</span> (<span class="params">a</span>) </span>&#123;</div><div class="line">    a += <span class="number">3</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">aaa(a);</div><div class="line"></div><div class="line">alert(a);  <span class="comment">// 10 传参尽量就相当于重新赋值，不会受函数影响</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">aaa</span> (<span class="params">a</span>) </span>&#123;</div><div class="line">    a.push(<span class="number">4</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line">aaa(a); <span class="comment">// [1,2,3,4]对象的传参相当于引用 </span></div><div class="line"></div><div class="line">alert(a);  <span class="comment">// [1,2,3,4]</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">aaa</span> (<span class="params">a</span>) </span>&#123;</div><div class="line">    a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>];</div><div class="line">&#125;</div><div class="line"></div><div class="line">aaa(a); </div><div class="line"></div><div class="line">alert(a); <span class="comment">// [1,2,3] 对象重新赋值就是断开了引用地址</span></div></pre></td></tr></table></figure>
+<p>lesson 3</p>
+<blockquote>
+<p>写一个字符串转成驼峰的方式</p>
+</blockquote>
+<p>border-bottom-color &gt; borderBottomColor</p>
+<ul>
+<li><p>课程方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">transform</span>(<span class="params">str</span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> arr= str.split(<span class="string">'-'</span>);</div><div class="line">        arr.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">data,index</span>) </span>&#123;</div><div class="line">            <span class="keyword">if</span>(index&gt;=<span class="number">1</span>) &#123;</div><div class="line">                arr[index] = data.charAt(<span class="number">0</span>).toUpperCase() + data.substring(<span class="number">1</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;)</div><div class="line">        <span class="keyword">return</span> arr.join(<span class="string">''</span>)  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>正则方法</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">'border-radius'</span>;</div><div class="line"></div><div class="line">transform(str);</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">transform</span>(<span class="params">str</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> re = <span class="regexp">/-(\w)/g</span>   <span class="comment">// \w就是字母的意思, 括起来的代表正则的子项</span></div><div class="line">    <span class="keyword">return</span> str.replace(re,<span class="function"><span class="keyword">function</span>(<span class="params">$<span class="number">0</span>, $<span class="number">1</span></span>) </span>&#123;  <span class="comment">// 第一个参数代表正则的整体，第二个参数担保正则的子祥</span></div><div class="line">        <span class="keyword">return</span> $<span class="number">1.</span>toUpperCase();</div><div class="line">    &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>查找字符串中最多的字符和个数</p>
+</blockquote>
+<ul>
+<li>字符串操作</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">'sasfdsgdsafdfagfassss'</span>;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">count</span>(<span class="params">str</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> obj = &#123;&#125;;</div><div class="line">    <span class="keyword">var</span> num = <span class="number">0</span>;</div><div class="line">    <span class="keyword">var</span> value = <span class="string">''</span>;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; str.length; i++) &#123;</div><div class="line">        <span class="keyword">if</span>(!obj[str[i]]) &#123;</div><div class="line">            obj[str[i]] = [];</div><div class="line">        &#125;</div><div class="line">        obj[str[i]].push(str[i]);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (item <span class="keyword">in</span> obj) &#123;</div><div class="line">        <span class="keyword">if</span>(num &lt; obj[item].length) &#123;</div><div class="line">            num = obj[item].length;</div><div class="line">            value = obj[item][<span class="number">0</span>]</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="string">'最多出现的字母是'</span> +value+ <span class="string">'重复'</span> + num + <span class="string">'次'</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">count(str);</div></pre></td></tr></table></figure>
+<ul>
+<li>正则操作</li>
+</ul>
+<blockquote>
+<p>如何给字符串加千分符</p>
+</blockquote>
+<p>324423143141 &gt; 324,423,143,141</p>
+<ul>
+<li>自己方法</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">'1324423143141'</span>;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(transform(str));</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">transform</span> (<span class="params">str</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> arr = str.split(<span class="string">''</span>);</div><div class="line">    <span class="keyword">var</span> arrh = <span class="string">''</span></div><div class="line">    <span class="keyword">var</span> iNum = arr.length % <span class="number">3</span>;</div><div class="line">    <span class="keyword">if</span>(iNum != <span class="number">0</span>) &#123;</div><div class="line">        <span class="keyword">var</span> arrh = arr.splice(<span class="number">0</span>,iNum);</div><div class="line">        arrh.push(<span class="string">','</span>);      </div><div class="line">    &#125;</div><div class="line">   </div><div class="line"></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = arr.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</div><div class="line">    <span class="keyword">if</span>(i%<span class="number">3</span> === <span class="number">0</span> &amp;&amp; i &gt;= <span class="number">3</span>) &#123;</div><div class="line">        arr.splice(i, <span class="number">0</span>, <span class="string">','</span>)</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line"> <span class="keyword">return</span> arrh.concat(arr).join(<span class="string">''</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>课程方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">'1324423143141'</span>;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(transform(str));</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">transform</span> (<span class="params">str</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> iNum = str.length % <span class="number">3</span>;</div><div class="line">    <span class="keyword">var</span> arr = [];</div><div class="line">    <span class="keyword">var</span> current = <span class="number">0</span>;</div><div class="line">    <span class="keyword">var</span> tmp =<span class="string">''</span>;</div><div class="line"></div><div class="line">    <span class="keyword">if</span>(iNum != <span class="number">0</span>) &#123;</div><div class="line">        prev = str.substring(<span class="number">0</span>, iNum);</div><div class="line">        arr.push(prev)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    str = str.substring(iNum);</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; str.length; i++) &#123;</div><div class="line">        current++;</div><div class="line">        tmp += str[i];</div><div class="line"></div><div class="line">        <span class="keyword">if</span>(current === <span class="number">3</span> &amp;&amp; tmp) &#123;</div><div class="line">            arr.push(tmp);</div><div class="line">            current = <span class="number">0</span>;</div><div class="line">            tmp = <span class="string">''</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> arr.join(<span class="string">','</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>正则</p>
+</li>
+</ul>
+<p>// (?=) :前向声明</p>
+<p>// (?!) :反前向声明</p>
+<blockquote>
+<p>匹配所有ab变成星号<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">'abacad'</span>;</div><div class="line"></div><div class="line"><span class="keyword">var</span> re = <span class="regexp">/a/g</span>;</div><div class="line"></div><div class="line">str = str.replace(re, <span class="string">'*'</span>);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(str)  <span class="comment">// *b*c*d</span></div></pre></td></tr></table></figure></p>
+<p>匹配只有a后有b的才变*</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">'abacad'</span>;</div><div class="line"></div><div class="line"><span class="keyword">var</span> re = <span class="regexp">/a(?=b)/g</span>;</div><div class="line"></div><div class="line">str = str.replace(re, <span class="string">'*'</span>);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(str)  <span class="comment">// *bacad 这就是前向声明的用法</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>匹配除了a后是b的其他，全都替换成*</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">'abacad'</span>;</div><div class="line"></div><div class="line"><span class="keyword">var</span> re = <span class="regexp">/a(?!=b)/g</span>;</div><div class="line"></div><div class="line">str = str.replace(re, <span class="string">'*'</span>);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(str)  <span class="comment">// ab*c*d 和前向声明相反，匹配</span></div></pre></td></tr></table></figure>
+<p>根据上面正则，实现<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">'1324423143141'</span>;</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">tranform</span>(<span class="params">str</span>) </span>&#123;</div><div class="line">   <span class="keyword">var</span> re = <span class="regexp">/(?=(?!\b)(\d&#123;3&#125;)+$)/g</span>;  <span class="comment">// \b 代表开始结束的位置</span></div><div class="line">   <span class="keyword">return</span> str.replace(re, <span class="string">','</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(tranform(str));</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>返回一个只包含数字类型的数组 js123ldsdkfsf234234 &gt; [123,234234]</p>
+</blockquote>
+<ul>
+<li>字符串</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> str = <span class="string">'js123lf234d234'</span>;</div><div class="line">transform(str);</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">transform</span> (<span class="params">str</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> arr = str.split(<span class="string">''</span>)</div><div class="line">    <span class="keyword">var</span> tmp = <span class="string">''</span>;</div><div class="line">    <span class="keyword">var</span> arrNew = []</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</div><div class="line">        <span class="keyword">if</span>(!<span class="built_in">isNaN</span>(arr[i]) &amp;&amp; !<span class="built_in">isNaN</span>(arr[i+<span class="number">1</span>]) )&#123;</div><div class="line">            tmp += arr[i];</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (!<span class="built_in">isNaN</span>(arr[i]) &amp;&amp; <span class="built_in">isNaN</span>(arr[i+<span class="number">1</span>])) &#123;</div><div class="line">            arrNew.push(tmp+arr[i]);</div><div class="line">            tmp = <span class="string">''</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="built_in">console</span>.log(arrNew);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>正则</li>
+</ul>
+<h1 id="lesson-4"><a href="#lesson-4" class="headerlink" title="lesson 4"></a>lesson 4</h1><p>限制条件补全代码</p>
+<blockquote>
+<p>有a，b两个变量，不用第三个变量来切换两个变量值</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">5</span>;</div><div class="line"><span class="keyword">var</span> b = <span class="number">6</span>;</div><div class="line"></div><div class="line"> a = a + b; <span class="comment">// 11</span></div><div class="line"> b = a - b; <span class="comment">// 6</span></div><div class="line"> a = a - b;</div><div class="line">  <span class="built_in">console</span>.log(a);</div><div class="line">  <span class="built_in">console</span>.log(b);</div></pre></td></tr></table></figure>
+<p>以上方法局限于数字，如果是字符串该如何呢？</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="string">'hello'</span>;</div><div class="line"><span class="keyword">var</span> b = <span class="string">'hi'</span>;</div><div class="line"></div><div class="line">a = [a, b];</div><div class="line">b = a[<span class="number">0</span>];</div><div class="line">a = a[<span class="number">1</span>];</div><div class="line">  <span class="built_in">console</span>.log(a);</div><div class="line">  <span class="built_in">console</span>.log(b);</div></pre></td></tr></table></figure>
+<blockquote>
+<p>有一个数n = 5, 不要循环返回 [1,2,3,4,5]</p>
+</blockquote>
+<p>不用循环可以考虑递归，不能考虑定时器，它是异步的</p>
+<ul>
+<li>递归</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> n = <span class="number">5</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">show</span> (<span class="params">n</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> arr = [];</div><div class="line">        <span class="keyword">return</span> (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            arr.unshift(n)</div><div class="line">            n--;</div><div class="line">            <span class="keyword">if</span>(n!=<span class="number">0</span>) &#123;</div><div class="line">                <span class="built_in">arguments</span>.callee;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="keyword">return</span> arr;</div><div class="line">        &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(show(n))</div></pre></td></tr></table></figure>
+<ul>
+<li>正则 利用replace </li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> n = <span class="number">5</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">show</span> (<span class="params">n</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> arr = [];</div><div class="line">    <span class="keyword">var</span> arrNew = [];</div><div class="line">    arr.length = n+<span class="number">1</span>; <span class="comment">// 通过数组的逗号替换，所以要多一位</span></div><div class="line">    <span class="keyword">var</span> str = arr.join(<span class="string">'a'</span>) <span class="comment">// aaaaa</span></div><div class="line">    str.replace(<span class="regexp">/a/g</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        arrNew.unshift(n--)</div><div class="line">    &#125;)</div><div class="line">    <span class="keyword">return</span> arrNew</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(show(n))</div></pre></td></tr></table></figure>
+<blockquote>
+<p>一个数n,当n小于100就返回n,否则返回100</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// if</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params">n</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span>(n&lt;<span class="number">100</span>) &#123;</div><div class="line">        <span class="keyword">return</span> n</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">100</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">alert(show(n))</div><div class="line"></div><div class="line"><span class="comment">// 三目</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params">n</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> n&lt;<span class="number">100</span>?n:<span class="number">100</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//switch</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params">n</span>) </span>&#123;</div><div class="line">    <span class="keyword">switch</span>(n &lt; <span class="number">100</span>)&#123;</div><div class="line">        <span class="keyword">case</span> <span class="literal">true</span>:</div><div class="line">            <span class="keyword">return</span> n;</div><div class="line">        <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> <span class="literal">false</span>:</div><div class="line">            <span class="keyword">return</span> <span class="number">100</span>;</div><div class="line">        <span class="keyword">break</span>;        </div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">// Math</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params">n</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">Math</span>.min(n,<span class="number">100</span>)</div><div class="line">&#125;</div><div class="line"><span class="comment">// 数组</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params">n</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> arr = [n, <span class="number">100</span>];</div><div class="line">    arr.sort(<span class="function"><span class="keyword">function</span> (<span class="params">a, b</span>) </span>&#123;</div><div class="line">        a - b;</div><div class="line">    &#125;)</div><div class="line"></div><div class="line">    <span class="keyword">return</span> arr[<span class="number">0</span>];</div><div class="line">&#125;</div><div class="line"><span class="comment">// 循环</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">show</span> (<span class="params">n</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> m = <span class="string">''</span> + n; <span class="comment">//转成字符串</span></div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">2</span>; i &lt; m.length &amp;&amp; n &gt; <span class="number">0</span>; i++)&#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">100</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> n;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// for in</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params">n</span>) </span>&#123;</div><div class="line">   <span class="keyword">var</span> json = &#123;<span class="attr">name</span>: <span class="string">'may'</span>&#125;</div><div class="line"></div><div class="line">   <span class="keyword">var</span> m = n &lt; <span class="number">100</span> || json;</div><div class="line"></div><div class="line">   <span class="keyword">for</span>(item <span class="keyword">in</span> m) &#123;</div><div class="line">       <span class="keyword">return</span> <span class="number">100</span></div><div class="line">   &#125;</div><div class="line">   <span class="keyword">return</span> n</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 表达式</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">show</span> (<span class="params">n</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> m = n &gt;= <span class="number">100</span> &amp;&amp; <span class="number">100</span>;</div><div class="line">    <span class="keyword">return</span> m || n;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>lesson 5 30.38</p>
+<blockquote>
+<p>斐波那契数列</p>
+<p>数组去重</p>
+<p>数组去重</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/面试，js/" rel="tag"># 面试，js</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/05/ajax原理/" rel="next" title="ajax原理">
+                <i class="fa fa-chevron-left"></i> ajax原理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="mayufo" />
+          <p class="site-author-name" itemprop="name">mayufo</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#lesson1"><span class="nav-number">1.</span> <span class="nav-text">lesson1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1"><span class="nav-number">1.0.1.</span> <span class="nav-text">1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2"><span class="nav-number">1.0.2.</span> <span class="nav-text">2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3"><span class="nav-number">1.0.3.</span> <span class="nav-text">3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4"><span class="nav-number">1.0.4.</span> <span class="nav-text">4</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5"><span class="nav-number">1.0.5.</span> <span class="nav-text">5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6"><span class="nav-number">1.0.6.</span> <span class="nav-text">6</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7"><span class="nav-number">1.0.7.</span> <span class="nav-text">7</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8"><span class="nav-number">1.0.8.</span> <span class="nav-text">8</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9"><span class="nav-number">1.0.9.</span> <span class="nav-text">9</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10"><span class="nav-number">1.0.10.</span> <span class="nav-text">10</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11"><span class="nav-number">1.0.11.</span> <span class="nav-text">11</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12"><span class="nav-number">1.0.12.</span> <span class="nav-text">12</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13"><span class="nav-number">1.0.13.</span> <span class="nav-text">13</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14"><span class="nav-number">1.0.14.</span> <span class="nav-text">14</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#lesson-2-运行题"><span class="nav-number">2.</span> <span class="nav-text">lesson 2 运行题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#变量的作用域"><span class="nav-number">2.0.1.</span> <span class="nav-text">变量的作用域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量不加-var-它会变成全局变量"><span class="nav-number">2.0.2.</span> <span class="nav-text">变量不加 var 它会变成全局变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量的查找是就近原则去寻找var定义的变量，当就近没有找到，就会查找外城，-如果没有找到，找外层的外层"><span class="nav-number">2.0.3.</span> <span class="nav-text">变量的查找是就近原则去寻找var定义的变量，当就近没有找到，就会查找外城， 如果没有找到，找外层的外层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数和局部变量重名的时候，优先级是等同，不分彼此"><span class="nav-number">2.0.4.</span> <span class="nav-text">参数和局部变量重名的时候，优先级是等同，不分彼此</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本类型赋值不存在引用关系，对象类型赋值才存在引用关系-除非对象重新赋值，导致地址断开"><span class="nav-number">2.0.5.</span> <span class="nav-text">基本类型赋值不存在引用关系，对象类型赋值才存在引用关系,除非对象重新赋值，导致地址断开</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#lesson-4"><span class="nav-number">3.</span> <span class="nav-text">lesson 4</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">mayufo</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

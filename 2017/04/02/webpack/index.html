@@ -98,7 +98,7 @@
 
 参考api http://webpack.github.io/docs/configuration.html中文api https://doc.webpack-china.org/guides/get-started/简易使用指南 https://git">
 <meta property="og:image" content="https://mayufo.github.io/<%= require('./img/bg.jpg')%>">
-<meta property="og:updated_time" content="2017-04-05T07:32:54.000Z">
+<meta property="og:updated_time" content="2017-04-05T07:35:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="webpack">
 <meta name="twitter:description" content="webpack说的很简单，项目中也一直在用别人搭好的脚手架，一直很忙没有功夫细细研究下，这次一定认真研究下，以后使用再有问题和坑一并记录到这来
@@ -431,7 +431,9 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">var HtmlWebpackPlugin = require(&apos;html-webpack-plugin&apos;);</div><div class="line">var path = require(&apos;path&apos;)</div><div class="line">module.exports = &#123;</div><div class="line">  entry: &apos;./src/app.js&apos;,</div><div class="line">  output: &#123;</div><div class="line">    path: path.resolve(__dirname, &apos;dist&apos;),</div><div class="line">    filename: &apos;app.bundle.js&apos;</div><div class="line">  &#125;,</div><div class="line">  plugins: [</div><div class="line">    new HtmlWebpackPlugin(&#123;</div><div class="line">      title: &apos;myApp&apos;,</div><div class="line">      minify: &#123;</div><div class="line">        collapseWhitespace: true //生成被压缩的html文件</div><div class="line">      &#125;,</div><div class="line">      hash: true,</div><div class="line">      template: &apos;./src/index.html&apos;, // 自定义的html路径</div><div class="line">    &#125;)</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>在src目录添加index.html</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=&quot;en&quot;&gt;</div><div class="line">&lt;head&gt;</div><div class="line">  &lt;meta charset=&quot;UTF-8&quot;&gt;</div><div class="line">  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</div><div class="line">  &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;</div><div class="line">  &lt;title&gt;&lt;%= htmlWebpackPlugin.options.title %&gt;&lt;/title&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">  &lt;p&gt;This is my template&lt;/p&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
-<h1 id="css-load、sass-load"><a href="#css-load、sass-load" class="headerlink" title="css-load、sass-load"></a>css-load、sass-load</h1><h2 id="css-load"><a href="#css-load" class="headerlink" title="css-load"></a>css-load</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">npm install css-loader style-loader --save-dev</div><div class="line">``` </div><div class="line"></div><div class="line">在app目录下生成app.css</div><div class="line"></div><div class="line">```css</div><div class="line">html,body&#123;</div><div class="line">  height:100%;</div><div class="line">  margin:0;</div><div class="line">  background:green;</div><div class="line">  color:#fff;</div><div class="line">  font-size:20px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="css-load、sass-load"><a href="#css-load、sass-load" class="headerlink" title="css-load、sass-load"></a>css-load、sass-load</h1><h2 id="css-load"><a href="#css-load" class="headerlink" title="css-load"></a>css-load</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install css-loader style-loader --save-dev</div></pre></td></tr></table></figure>
+<p>在app目录下生成app.css</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">html</span>,<span class="selector-tag">body</span>&#123;</div><div class="line">  <span class="attribute">height</span>:<span class="number">100%</span>;</div><div class="line">  <span class="attribute">margin</span>:<span class="number">0</span>;</div><div class="line">  <span class="attribute">background</span>:green;</div><div class="line">  <span class="attribute">color</span>:<span class="number">#fff</span>;</div><div class="line">  <span class="attribute">font-size</span>:<span class="number">20px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>修改webpack.config.js</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">module: &#123;</div><div class="line">    rules: [</div><div class="line">      &#123;test: /\.css$/, loaders: &apos;style-loader!css-loader&apos;&#125;</div><div class="line">      // &#123;test: /\.css$/, use: [&apos;style-loader&apos;, &apos;css-loader&apos;]&#125;</div><div class="line">    ]</div><div class="line">  &#125;,</div></pre></td></tr></table></figure>
 <p>修改app.js</p>
@@ -608,7 +610,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -630,7 +632,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">tags</span>
               
             </div>

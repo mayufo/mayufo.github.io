@@ -93,7 +93,7 @@
 <meta property="og:url" content="https://mayufo.github.io/2017/04/08/Interview_Javascript/index.html">
 <meta property="og:site_name" content="mayufo">
 <meta property="og:description" content="一些比较饶人的js题的自测和学习">
-<meta property="og:updated_time" content="2017-04-13T14:20:55.000Z">
+<meta property="og:updated_time" content="2017-04-13T16:06:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Interview_Javascript">
 <meta name="twitter:description" content="一些比较饶人的js题的自测和学习">
@@ -550,7 +550,7 @@
 </blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">randomstring</span>(<span class="params">n</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> str = <span class="string">'abcdefghijklmnopqrstuvwxyz9876543210'</span>;</div><div class="line">    </div><div class="line">    <span class="keyword">var</span> tmp = <span class="string">''</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</div><div class="line">        tmp += str.charAt(<span class="built_in">Math</span>.random() * <span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> tmp;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <blockquote>
-<p>js打乱数组的最搞笑方法</p>
+<p>js打乱数组的最高效方法</p>
 </blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [];</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">100</span>; i++) &#123;</div><div class="line">    arr[i] = i;</div><div class="line">&#125;</div><div class="line"></div><div class="line">arr.sort(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="number">0.5</span> - <span class="built_in">Math</span>.random()</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="keyword">var</span> str = arr.join()</div></pre></td></tr></table></figure>
 <blockquote>
@@ -592,6 +592,36 @@
 <p>CSS中一个冒号和两个冒号有神马区别？</p>
 </blockquote>
 <p> 单冒号(:)用于CSS3伪类，双冒号(::)用于CSS3伪元素。</p>
+<blockquote>
+<p>原型对象</p>
+</blockquote>
+<p>每当定义一个对象，对象中都会包含一些预定义的属性，其中函数对象的一个属性就是原型对象 <code>prototype</code></p>
+<p>注： 普通对象没有prototype,但是有 <code>__proto__</code></p>
+<p>原型底下主要作用是继承</p>
+<blockquote>
+<p>原型链</p>
+</blockquote>
+<p>在js创建对象的时候，都有一个 <code>__proto__</code>的内置属性，用于指向创建它的函数对象的原型对象的 <code>prototype</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> person = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = name;</div><div class="line">&#125;</div><div class="line"></div><div class="line">person.prototype.getName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.name</div><div class="line">&#125;</div><div class="line"></div><div class="line">  <span class="keyword">var</span> m = <span class="keyword">new</span> person(<span class="string">'may'</span>);</div><div class="line">  m.getName(); <span class="comment">//may</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="built_in">console</span>.log(m.__proto__ === person.prototype) <span class="comment">//true</span></div></pre></td></tr></table></figure>
+<p><code>person.prototype</code>对象也有<code>__proto__</code>属性，它指向创建它的函数对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(person.prototype.__proto__ === <span class="built_in">Object</span>.prototype) <span class="comment">//true</span></div></pre></td></tr></table></figure>
+<p>Object.prototype对象也有<strong>proto</strong>属性，但它比较特殊，为null</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.__proto__) <span class="comment">//null</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>constructor</p>
+</blockquote>
+<p>原型对象 <code>prototype</code>中都有个预定义的constructor属性，用来引用它的函数对象，这是一张循环引用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">person.prototype.constructor === person <span class="comment">//true</span></div><div class="line"><span class="built_in">Function</span>.prototype.constructor === <span class="built_in">Function</span> <span class="comment">//true</span></div><div class="line"><span class="built_in">Object</span>.prototype.constructor === <span class="built_in">Object</span> <span class="comment">//true</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>作用域</p>
+</blockquote>
+<p>作用域就是变量和函数可以访问的范围，控制着变量和函数的可见性与生命周期</p>
+<blockquote>
+<p>作用域链</p>
+</blockquote>
+<p>当代码在一个环境中执行时，会创建变量对象一个作用域，来保证对执行环境有权访问的变量和函数的有序访问</p>
+<p>在函数运行过程中标识符的解析是沿着作用域链一级一级搜索的过程，从第一个对象开始，逐级向后回溯，直到找到同名标识符为止，找到后不再继续遍历，找不到就报错。</p>
 
       
     </div>

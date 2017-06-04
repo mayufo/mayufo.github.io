@@ -93,7 +93,7 @@
 <meta property="og:url" content="https://mayufo.github.io/2017/04/05/ajax原理/index.html">
 <meta property="og:site_name" content="mayufo">
 <meta property="og:description" content="ajax 学习总结">
-<meta property="og:updated_time" content="2017-04-11T16:34:32.000Z">
+<meta property="og:updated_time" content="2017-04-19T05:21:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ajax原理">
 <meta name="twitter:description" content="ajax 学习总结">
@@ -442,23 +442,25 @@
 <li>JSON.parse(str); key值必须是双引号才可以转为json</li>
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> oBtn = <span class="built_in">document</span>.getElementById(<span class="string">'btn'</span>);</div><div class="line"><span class="keyword">var</span> oul = <span class="built_in">document</span>.getElementById(<span class="string">'ul'</span>);</div><div class="line"></div><div class="line">oBtn.onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">	xhr.open(<span class="string">'get'</span>, <span class="string">'getNew.php'</span>, <span class="literal">true</span>);</div><div class="line">	xhr.send();</div><div class="line">	xhr.onreadystatechange = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">		<span class="keyword">if</span>(xhr.readyState === <span class="number">4</span>) &#123;</div><div class="line">			<span class="keyword">if</span>(xhr.status === <span class="number">200</span>) &#123;</div><div class="line">				<span class="keyword">var</span> data = <span class="built_in">JSON</span>.parse(xhr.responseText);</div><div class="line">				<span class="keyword">var</span> html = <span class="string">''</span>;</div><div class="line">				<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; data.length; i++) &#123;</div><div class="line">					html += <span class="string">'&lt;li&gt;&lt;a href=""&gt;'</span> + data[i].title + <span class="string">'&lt;/a&gt;&lt;span&gt;'</span> + data[i].date+ <span class="string">'&lt;/span&gt;&lt;/li&gt;'</span></div><div class="line">				&#125;</div><div class="line"></div><div class="line">				oul.innerHTML = html;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="瀑布流展示demo"><a href="#瀑布流展示demo" class="headerlink" title="瀑布流展示demo"></a>瀑布流展示demo</h1><h2 id="瀑布流布局"><a href="#瀑布流布局" class="headerlink" title="瀑布流布局"></a>瀑布流布局</h2><blockquote>
-<p>每次最短的li,然后添加位置</p>
-<p>需要知道图片的高度，否则图片加载还没有加载完成，就会自动计算那一列最短而去添加。可以有两种解决方案</p>
-<p>拉到最底下加载</p>
-</blockquote>
+<h1 id="瀑布流展示demo"><a href="#瀑布流展示demo" class="headerlink" title="瀑布流展示demo"></a>瀑布流展示demo</h1><h2 id="瀑布流布局需求"><a href="#瀑布流布局需求" class="headerlink" title="瀑布流布局需求"></a>瀑布流布局需求</h2><ul>
+<li>每次最短的li,然后添加位置</li>
+<li>需要知道图片的高度，否则图片加载还没有加载完成，就会自动计算那一列最短而去添加。可以有两种解决方案</li>
+<li>拉到最底下加载</li>
+</ul>
 <p>计算最短的li的高度 + top值 &lt; 可视区的高度 + 滚动条的高度 <code>document.documentElement.scrollTop || document.body.scrollTop</code></p>
+<ul>
+<li>往下拉， 不仅仅加载一次，可能会触发 第二页 第三页，可以设置个标识位</li>
+</ul>
 <blockquote>
-<p>往下拉， 不仅仅加载一次，可能会触发 第二页 第三页，可以设置个标识位</p>
 <p>数据加载完的时候</p>
 </blockquote>
 <p> 应该对每次取到的数据进行判断，如果没有数据， return 出去</p>
+<blockquote>
+<p>后端传值宽高 如果宽度确定  200 高度就是</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">element.height * (<span class="number">200</span>/element.width)</div><div class="line"></div><div class="line"><span class="built_in">document</span>.createElement(<span class="string">'li'</span>);</div></pre></td></tr></table></figure>
 <ul>
-<li><p>后端传值宽高 如果宽度确定  200 高度就是   </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">element.height * (<span class="number">200</span>/element.width)</div><div class="line"></div><div class="line"><span class="built_in">document</span>.createElement()</div></pre></td></tr></table></figure>
-</li>
-<li><p>预加载</p>
-</li>
+<li>预加载</li>
 </ul>
 <h1 id="跨域解决"><a href="#跨域解决" class="headerlink" title="跨域解决"></a>跨域解决</h1><p>一个域名的文件去请求和它不一样的域名下的资源文件，就会产生跨域请求</p>
 <p>浏览器因为安全问题不允许跨域请求，可以采用</p>
@@ -597,7 +599,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -619,7 +621,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">tags</span>
               
             </div>
@@ -654,7 +656,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是ajax"><span class="nav-number">1.</span> <span class="nav-text">什么是ajax?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建一个对象"><span class="nav-number">2.</span> <span class="nav-text">创建一个对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#open-方法"><span class="nav-number">3.</span> <span class="nav-text">open 方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#表单-数据提交"><span class="nav-number">4.</span> <span class="nav-text">表单 数据提交</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据的获取"><span class="nav-number">5.</span> <span class="nav-text">数据的获取</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#请求的处理"><span class="nav-number">6.</span> <span class="nav-text">请求的处理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据获取的问题"><span class="nav-number">7.</span> <span class="nav-text">数据获取的问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#瀑布流展示demo"><span class="nav-number">8.</span> <span class="nav-text">瀑布流展示demo</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#瀑布流布局"><span class="nav-number">8.1.</span> <span class="nav-text">瀑布流布局</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#跨域解决"><span class="nav-number">9.</span> <span class="nav-text">跨域解决</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是ajax"><span class="nav-number">1.</span> <span class="nav-text">什么是ajax?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建一个对象"><span class="nav-number">2.</span> <span class="nav-text">创建一个对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#open-方法"><span class="nav-number">3.</span> <span class="nav-text">open 方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#表单-数据提交"><span class="nav-number">4.</span> <span class="nav-text">表单 数据提交</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据的获取"><span class="nav-number">5.</span> <span class="nav-text">数据的获取</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#请求的处理"><span class="nav-number">6.</span> <span class="nav-text">请求的处理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据获取的问题"><span class="nav-number">7.</span> <span class="nav-text">数据获取的问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#瀑布流展示demo"><span class="nav-number">8.</span> <span class="nav-text">瀑布流展示demo</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#瀑布流布局需求"><span class="nav-number">8.1.</span> <span class="nav-text">瀑布流布局需求</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#跨域解决"><span class="nav-number">9.</span> <span class="nav-text">跨域解决</span></a></li></ol></div>
             
 
           </div>

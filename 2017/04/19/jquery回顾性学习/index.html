@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="jquery,回顾，总结," />
+  <meta name="keywords" content="回顾，总结,jquery," />
 
 
 
@@ -93,7 +93,7 @@
 <meta property="og:url" content="https://mayufo.github.io/2017/04/19/jquery回顾性学习/index.html">
 <meta property="og:site_name" content="mayufo">
 <meta property="og:description" content="回顾性学习！">
-<meta property="og:updated_time" content="2017-06-13T16:09:43.000Z">
+<meta property="og:updated_time" content="2017-06-13T16:18:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jquery回顾性学习">
 <meta name="twitter:description" content="回顾性学习！">
@@ -480,6 +480,16 @@
 </ul>
 <h1 id="编写弹窗"><a href="#编写弹窗" class="headerlink" title="编写弹窗"></a>编写弹窗</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'#login'</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> odiv = $(<span class="string">'&lt;div class="modal1"&gt;1111111&lt;/div&gt;'</span>);</div><div class="line">        $(<span class="string">'body'</span>).append(odiv);</div><div class="line">        odiv.css(<span class="string">'left'</span>, ($(<span class="built_in">window</span>).width() - odiv.outerWidth())/<span class="number">2</span>);</div><div class="line">        odiv.css(<span class="string">'top'</span>, ($(<span class="built_in">window</span>).height() - odiv.outerHeight())/<span class="number">2</span> + $(<span class="built_in">window</span>).scrollTop()) ;</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">$(<span class="built_in">window</span>).on(<span class="string">'resize scroll'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    odiv.css(<span class="string">'left'</span>, ($(<span class="built_in">window</span>).width() - odiv.outerWidth())/<span class="number">2</span>);</div><div class="line">    odiv.css(<span class="string">'top'</span>, ($(<span class="built_in">window</span>).height() - odiv.outerHeight())/<span class="number">2</span> + $(<span class="built_in">window</span>).scrollTop()); <span class="comment">// 加上滚动条的距离</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'.clocse'</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  $(<span class="string">'#login'</span>).remove();</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h1 id="事件细节"><a href="#事件细节" class="headerlink" title="事件细节"></a>事件细节</h1><ul>
+<li>ev : 原生是event </li>
+<li>ev.pageX(相对于文档) 鼠标的坐标 :   原生用的clientX(相对于可视区)    可视区 + 滚动 = 相对于文档</li>
+<li>ev.which : 原生keyCode 键盘的键值  回车是13，which 还可以记录鼠标的左右和滚动</li>
+<li>ev.preventDefault(); 阻止默认事件</li>
+<li>ev.stopPropagation() 组织冒泡事件</li>
+<li>return false; 即阻止默认事件又阻止冒泡事件</li>
+<li>one 事件只运行一次<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'div'</span>).one(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">ev</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'只执行一次'</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+</li>
+</ul>
 
       
     </div>
@@ -503,9 +513,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/jquery/" rel="tag"># jquery</a>
-          
             <a href="/tags/回顾，总结/" rel="tag"># 回顾，总结</a>
+          
+            <a href="/tags/jquery/" rel="tag"># jquery</a>
           
         </div>
       
@@ -659,7 +669,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#选择元素"><span class="nav-number">1.</span> <span class="nav-text">选择元素</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#写法"><span class="nav-number">2.</span> <span class="nav-text">写法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#jq与js的关系"><span class="nav-number">3.</span> <span class="nav-text">jq与js的关系</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用方法"><span class="nav-number">4.</span> <span class="nav-text">常用方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编写选项卡"><span class="nav-number">5.</span> <span class="nav-text">编写选项卡</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用方法-1"><span class="nav-number">6.</span> <span class="nav-text">常用方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编写弹窗"><span class="nav-number">7.</span> <span class="nav-text">编写弹窗</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#选择元素"><span class="nav-number">1.</span> <span class="nav-text">选择元素</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#写法"><span class="nav-number">2.</span> <span class="nav-text">写法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#jq与js的关系"><span class="nav-number">3.</span> <span class="nav-text">jq与js的关系</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用方法"><span class="nav-number">4.</span> <span class="nav-text">常用方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编写选项卡"><span class="nav-number">5.</span> <span class="nav-text">编写选项卡</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用方法-1"><span class="nav-number">6.</span> <span class="nav-text">常用方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编写弹窗"><span class="nav-number">7.</span> <span class="nav-text">编写弹窗</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#事件细节"><span class="nav-number">8.</span> <span class="nav-text">事件细节</span></a></li></ol></div>
             
 
           </div>

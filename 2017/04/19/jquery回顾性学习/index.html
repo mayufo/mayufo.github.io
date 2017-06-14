@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="回顾，总结,jquery," />
+  <meta name="keywords" content="jquery,回顾，总结," />
 
 
 
@@ -93,7 +93,7 @@
 <meta property="og:url" content="https://mayufo.github.io/2017/04/19/jquery回顾性学习/index.html">
 <meta property="og:site_name" content="mayufo">
 <meta property="og:description" content="回顾性学习！">
-<meta property="og:updated_time" content="2017-06-13T16:18:45.000Z">
+<meta property="og:updated_time" content="2017-06-14T16:51:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jquery回顾性学习">
 <meta name="twitter:description" content="回顾性学习！">
@@ -490,6 +490,17 @@
 <li>one 事件只运行一次<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'div'</span>).one(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">ev</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'只执行一次'</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 </li>
 </ul>
+<h1 id="位置方法"><a href="#位置方法" class="headerlink" title="位置方法"></a>位置方法</h1><ul>
+<li><p>(原生)offsetLeft 如果外面有个绝对定位 ，left向左就是到相对定位的距离，如果没有相对定位就是到屏幕左边</p>
+</li>
+<li><p>offset() 有两个属性 left() 和 top（）无视定位 可以获取到屏幕的总距离</p>
+</li>
+<li><p>position() 有两个属性 top() 和 left() 会把当前元素转化为类似定位的形式，忽视margin的值，</p>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"div1"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"div2"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#div1</span> &#123;<span class="attribute">width</span>: <span class="number">200px</span>; <span class="attribute">height</span>: <span class="number">200px</span>; <span class="attribute">background</span>: red; <span class="attribute">overflow</span>: hidden; <span class="attribute">margin</span>: <span class="number">20px</span>;&#125;</div><div class="line"></div><div class="line"><span class="selector-id">#div2</span> &#123; <span class="attribute">width</span>: <span class="number">100px</span>; <span class="attribute">height</span>: <span class="number">100px</span>; <span class="attribute">background</span>: green; <span class="attribute">margin</span>: <span class="number">30px</span>; <span class="attribute">padding</span>: <span class="number">20px</span>;&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alert($(<span class="string">'#div2'</span>).position().left); <span class="comment">// 20px  到有定位的父级， 忽视margin 则是20px 如果div1 加position: absolute则会变为0， 如果给div1 加position: absolute，div2 加position: absolute; left: 25px 弹出 25px</span></div></pre></td></tr></table></figure>
 
       
     </div>
@@ -513,9 +524,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/回顾，总结/" rel="tag"># 回顾，总结</a>
-          
             <a href="/tags/jquery/" rel="tag"># jquery</a>
+          
+            <a href="/tags/回顾，总结/" rel="tag"># 回顾，总结</a>
           
         </div>
       
@@ -669,7 +680,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#选择元素"><span class="nav-number">1.</span> <span class="nav-text">选择元素</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#写法"><span class="nav-number">2.</span> <span class="nav-text">写法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#jq与js的关系"><span class="nav-number">3.</span> <span class="nav-text">jq与js的关系</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用方法"><span class="nav-number">4.</span> <span class="nav-text">常用方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编写选项卡"><span class="nav-number">5.</span> <span class="nav-text">编写选项卡</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用方法-1"><span class="nav-number">6.</span> <span class="nav-text">常用方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编写弹窗"><span class="nav-number">7.</span> <span class="nav-text">编写弹窗</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#事件细节"><span class="nav-number">8.</span> <span class="nav-text">事件细节</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#选择元素"><span class="nav-number">1.</span> <span class="nav-text">选择元素</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#写法"><span class="nav-number">2.</span> <span class="nav-text">写法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#jq与js的关系"><span class="nav-number">3.</span> <span class="nav-text">jq与js的关系</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用方法"><span class="nav-number">4.</span> <span class="nav-text">常用方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编写选项卡"><span class="nav-number">5.</span> <span class="nav-text">编写选项卡</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用方法-1"><span class="nav-number">6.</span> <span class="nav-text">常用方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编写弹窗"><span class="nav-number">7.</span> <span class="nav-text">编写弹窗</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#事件细节"><span class="nav-number">8.</span> <span class="nav-text">事件细节</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#位置方法"><span class="nav-number">9.</span> <span class="nav-text">位置方法</span></a></li></ol></div>
             
 
           </div>

@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="jquery,回顾，总结," />
+  <meta name="keywords" content="回顾，总结,jquery," />
 
 
 
@@ -93,7 +93,7 @@
 <meta property="og:url" content="https://mayufo.github.io/2017/04/19/jquery回顾性学习/index.html">
 <meta property="og:site_name" content="mayufo">
 <meta property="og:description" content="回顾性学习！">
-<meta property="og:updated_time" content="2017-06-14T16:51:33.000Z">
+<meta property="og:updated_time" content="2017-06-19T16:18:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jquery回顾性学习">
 <meta name="twitter:description" content="回顾性学习！">
@@ -427,8 +427,9 @@
 </li>
 <li><p>outerWidth(true) // 含实际宽+padding+border+margin</p>
 </li>
-<li><p>insertBefore() // 将前面找到的元素放在后面元素的前面  对应before()</p>
-</li>
+</ul>
+<h1 id="插入位置的操作"><a href="#插入位置的操作" class="headerlink" title="插入位置的操作"></a>插入位置的操作</h1><ul>
+<li>insertBefore() // 将前面找到的元素放在后面元素的前面  对应before()</li>
 </ul>
 <p>前</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>div<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span>span<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div></pre></td></tr></table></figure>
@@ -501,6 +502,147 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"div1"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"div2"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#div1</span> &#123;<span class="attribute">width</span>: <span class="number">200px</span>; <span class="attribute">height</span>: <span class="number">200px</span>; <span class="attribute">background</span>: red; <span class="attribute">overflow</span>: hidden; <span class="attribute">margin</span>: <span class="number">20px</span>;&#125;</div><div class="line"></div><div class="line"><span class="selector-id">#div2</span> &#123; <span class="attribute">width</span>: <span class="number">100px</span>; <span class="attribute">height</span>: <span class="number">100px</span>; <span class="attribute">background</span>: green; <span class="attribute">margin</span>: <span class="number">30px</span>; <span class="attribute">padding</span>: <span class="number">20px</span>;&#125;</div></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alert($(<span class="string">'#div2'</span>).position().left); <span class="comment">// 20px  到有定位的父级， 忽视margin 则是20px 如果div1 加position: absolute则会变为0， 如果给div1 加position: absolute，div2 加position: absolute; left: 25px 弹出 25px</span></div></pre></td></tr></table></figure>
+<h1 id="获取父级"><a href="#获取父级" class="headerlink" title="获取父级"></a>获取父级</h1><ul>
+<li><p>parent() 获取父级</p>
+</li>
+<li><p>offsetParent() 获取有定位的父级 如果外面没有定位就是body</p>
+</li>
+<li><p>size() 获取一组元素长度 有点像length</p>
+</li>
+<li><p>each() 循环  // 第一个参数是下标，第二个参数是每个元素</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'li'</span>).each(<span class="function"><span class="keyword">function</span> (<span class="params">index, elem</span>) </span>&#123;</div><div class="line">    $(elem).html(i)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h1 id="编写拖拽"><a href="#编写拖拽" class="headerlink" title="编写拖拽"></a>编写拖拽</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> disX = <span class="number">0</span>;</div><div class="line">    <span class="keyword">var</span> disY = <span class="number">0</span>;</div><div class="line">    $(<span class="string">'div'</span>).mousedown(<span class="function"><span class="keyword">function</span> (<span class="params">ev</span>) </span>&#123;</div><div class="line">        disX = ev.pageX - $(<span class="keyword">this</span>).offset().left;</div><div class="line">        disY = ev.pageY - $(<span class="keyword">this</span>).offset().top;</div><div class="line">        $(<span class="built_in">document</span>).mouseover(<span class="function"><span class="keyword">function</span> (<span class="params">ev</span>) </span>&#123;</div><div class="line">            $(<span class="string">'div'</span>).css(<span class="string">'left'</span>, ev.pageX - disX);</div><div class="line">            $(<span class="string">'div'</span>).css(<span class="string">'top'</span>, ev.pageY - disY);</div><div class="line">        &#125;)</div><div class="line"></div><div class="line">        $(<span class="built_in">document</span>).mouseup(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            $(<span class="built_in">document</span>).off();</div><div class="line">        &#125;)</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    &#125;)</div></pre></td></tr></table></figure>
+<h1 id="其他常用"><a href="#其他常用" class="headerlink" title="其他常用"></a>其他常用</h1><ul>
+<li>hover 模拟hover()</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'#div1'</span>).hover(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  $(<span class="keyword">this</span>).css(<span class="string">'background'</span>, <span class="string">'blue'</span>); <span class="comment">// 鼠标移入</span></div><div class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  $(<span class="keyword">this</span>).css(<span class="string">'background'</span>, <span class="string">'red'</span>); <span class="comment">// 鼠标移出</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<ul>
+<li>show() hide ()  接收一个参数 1000 为1s的运动效果 </li>
+<li>fadeIn() fadeOut() 淡入 淡出 接收一个参数为时间 in  -&gt; out 从透明0 到 1</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'#div1'</span>).hover(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  $(<span class="keyword">this</span>).fadeIn();</div><div class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  $(<span class="keyword">this</span>).fadeOut();</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<ul>
+<li><p>slideUp()  卷出 / sideDown()  卷起</p>
+</li>
+<li><p>fadeTo()  一个参数是时间 第二个参数是透明度</p>
+</li>
+</ul>
+<h1 id="高级"><a href="#高级" class="headerlink" title="高级"></a>高级</h1><h2 id="基础方法扩充"><a href="#基础方法扩充" class="headerlink" title="基础方法扩充"></a>基础方法扩充</h2><ul>
+<li>get(): 把jq转为原生js</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"div1"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'#div1'</span>).get(<span class="number">0</span>).innerHTML;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; $(<span class="string">'li'</span>).get().length; i++) &#123; <span class="comment">// $('li').get() 会将一组li转为原生的 </span></div><div class="line">    $(<span class="string">'li'</span>)[i].style.background = <span class="string">'red'</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>而此处的$(li).length 也是可以用，因为jq的length也是个方法， 如果给$(‘li’)加下标 也是可以转为原生的</p>
+<ul>
+<li><p>outerWidth() 如果参数写true 会获取margin的值</p>
+</li>
+<li><p>(原生)offsetWidth 获取不到隐藏元素,而jq中获取元素的宽高，可以获取到隐藏的元素</p>
+</li>
+<li><p>text()  会获取所有的内容</p>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>111 <span class="tag">&lt;<span class="name">span</span>&gt;</span>444<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>222<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>333<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'div'</span>).html() <span class="comment">//如果用html() 获取到 111&lt;span&gt;4444&lt;/span&gt;  </span></div><div class="line"></div><div class="line">$(<span class="string">'div'</span>).text() <span class="comment">// 获取到 111444222333</span></div><div class="line"></div><div class="line">$(<span class="string">'div'</span>).text(<span class="string">'&lt;h3&gt;h3&lt;/h3&gt;'</span>); <span class="comment">// 得到文本&lt;h3&gt;h3&lt;/h3&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>remove() 删除后的返回值就是之前删的元素，但是它自带的事件和操作都会被删掉</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'div'</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    alert(<span class="number">123</span>);</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="keyword">var</span> oDiv = $(<span class="string">'div'</span>).remove();</div><div class="line"></div><div class="line">$(<span class="string">'body'</span>).append(oDiv); <span class="comment">// 但是无法恢复事件</span></div></pre></td></tr></table></figure>
+<ul>
+<li>detach() 跟remove方式一样，会保留删除的事件</li>
+</ul>
+<ul>
+<li><p>window.onload = function() {} 所有页面加载完</p>
+</li>
+<li><p>$(function () {}) // 等dom 加载完，比原生性能好</p>
+</li>
+<li><p>$(document).ready(function () {}) 就是上面的$(function () {}) // dom加载完成</p>
+</li>
+<li><p>parent() // 获取父级  parents() //获取当前元素所有的祖先节点,参数是筛选功能，只要条件满足 就能筛选不来，不止一个</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'#div2'</span>).parents(<span class="string">'body'</span>).css(<span class="string">'background'</span>, <span class="string">'red'</span>); <span class="comment">// 参数是body ,只能给父级的body变为红色背景</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"div1"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"div2"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>closet() 获取最近的祖先节点，包括当前元素自身, 必须写筛选的参数，找最近只能找到一个元素</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'#div2'</span>).closest(<span class="string">'body'</span>).css(<span class="string">'background'</span>, <span class="string">'red'</span>); <span class="comment">// 参数是body ,只能给父级的body变为红色背景</span></div></pre></td></tr></table></figure>
+<ul>
+<li><p>siblings() 获取所有元素的兄弟节点，不包括它自身，也可以写一个参数进行筛选</p>
+</li>
+<li><p>nextAll() 找下面所有的兄弟节点 next找下一个兄弟节点， 也可以写一个参数进行筛选</p>
+</li>
+<li><p>prevAll()  上面所有的兄弟节点 也可以写一个参数进行筛选</p>
+</li>
+<li><p>parentsUntil() 父元素截止  nextUntil() 下一个元素截止  prevUntil()  找上一个元素截止 里面有一个参数来说明 到那个元素截止</p>
+</li>
+<li><p>clone() 克隆节点 复制节点的操作， 可以接受一个参数作用可以复制之前的操作行为 参数为true ,克隆版本的也会有操作</p>
+</li>
+<li><p>wrap() 包装</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'span'</span>).wrap(<span class="string">'&lt;div&gt;'</span>); <span class="comment">// 给每个span 外面包装一个div</span></div></pre></td></tr></table></figure>
+<ul>
+<li>wrapAll() 整体包装</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'span'</span>).wrapAll(<span class="string">'&lt;div&gt;'</span>); <span class="comment">// 会在三个span的外面包裹一个div</span></div></pre></td></tr></table></figure>
+<p>如果是</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>11<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>使用wrapAll</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>11<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>wrapInner 在里面包装</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>unwrap 删除父级，不包括body</li>
+</ul>
+<p>前</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'span'</span>).unwrap()</div></pre></td></tr></table></figure>
+<p>后<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<ul>
+<li>add() 对节点添加组合的一种方法</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span>111111<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>2222222<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> elem = $(<span class="string">'div'</span>);</div><div class="line"><span class="keyword">var</span> elem = elem.add(<span class="string">'span'</span>);</div><div class="line"></div><div class="line">elem.css(<span class="string">'color'</span>, red); <span class="comment">//两个元素都会变红</span></div></pre></td></tr></table></figure>
+<ul>
+<li>slice() 截取指定的范围</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'li'</span>).slice(<span class="number">1</span>,<span class="number">4</span>).css(<span class="string">'background'</span>, red);  <span class="comment">// 选择中间三个li 结束的位置不包含</span></div></pre></td></tr></table></figure>
+<ul>
+<li>serialize() 串联成字符串</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">""</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"a"</span> <span class="attr">value</span>=<span class="string">"1"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"b"</span> <span class="attr">value</span>=<span class="string">"2"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"c"</span> <span class="attr">value</span>=<span class="string">"3"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log($(<span class="string">'from'</span>).serialize());   <span class="comment">// a=1&amp;b=2&amp;c=3</span></div></pre></td></tr></table></figure>
+<ul>
+<li>serializeArray() 串联成数组<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log($(<span class="string">'from'</span>).serializeArray();   <span class="comment">// [&#123;name='a', value='1'&#125;, &#123;name='b', value='2'&#125;, &#123;name='c', value='3'&#125;] // 每个数组是个json</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="jq中复杂的运动"><a href="#jq中复杂的运动" class="headerlink" title="jq中复杂的运动"></a>jq中复杂的运动</h1><ul>
+<li>animate() <ul>
+<li>第一个参数 是一个json 运动的值和属性，</li>
+<li>第二个值是时间，调节快慢 默认时间是400</li>
+<li>运动形式 只有两种运动形式 （swing(满快慢) linear(匀速)）默认是swing</li>
+<li>回调函数 当运动结束运行</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'div'</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  $(<span class="keyword">this</span>).animate(&#123;<span class="attr">width</span>: <span class="number">300</span>, <span class="attr">height</span>: <span class="number">300</span>&#125;, <span class="number">400</span>, <span class="string">'swing'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    alert(<span class="number">11</span>);</div><div class="line">  &#125;); <span class="comment">// 之前的style 宽高是100 时间是400毫秒</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'div'</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  $(<span class="keyword">this</span>).animate(&#123;<span class="attr">width</span>: <span class="number">300</span>&#125;, <span class="number">400</span>, <span class="string">'swing'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    $(<span class="keyword">this</span>).animate(&#123;<span class="attr">height</span>: <span class="number">300</span>&#125;); <span class="comment">// </span></div><div class="line">  &#125;); <span class="comment">// 走完宽以后走高</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>链式写法<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(<span class="keyword">this</span>).animate(&#123;<span class="attr">width</span>: <span class="number">300</span>&#125;, <span class="number">2000</span>).animate(&#123;<span class="attr">height</span>: <span class="number">300</span>&#125;, <span class="number">2000</span>);</div></pre></td></tr></table></figure></p>
+<ul>
+<li>stop() 停止运动 阻止当前的运动，不会阻止所有运动， 如果想阻止所有后续运动  stop(true);  第二个参数如果是stop(true,true)立即停止并到指定的目标点,只针对当前的运动，而不是全部的后续运动</li>
+</ul>
+<p>如果想点击停止当前的所有的运动，并且全部到都到指定的目标点</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'div'</span>).finish() <span class="comment">//立即停止到指定的目标点</span></div></pre></td></tr></table></figure>
+<ul>
+<li>delay() 延迟运动</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(<span class="keyword">this</span>).animate(&#123;<span class="attr">width</span>: <span class="number">300</span>&#125;, <span class="number">2000</span>).delay(<span class="number">1000</span>).animate(&#123;<span class="attr">height</span>: <span class="number">300</span>&#125;,<span class="number">2000</span>); <span class="comment">//宽走完停顿1s再走高</span></div></pre></td></tr></table></figure>
 
       
     </div>
@@ -524,9 +666,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/jquery/" rel="tag"># jquery</a>
-          
             <a href="/tags/回顾，总结/" rel="tag"># 回顾，总结</a>
+          
+            <a href="/tags/jquery/" rel="tag"># jquery</a>
           
         </div>
       
@@ -680,7 +822,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#选择元素"><span class="nav-number">1.</span> <span class="nav-text">选择元素</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#写法"><span class="nav-number">2.</span> <span class="nav-text">写法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#jq与js的关系"><span class="nav-number">3.</span> <span class="nav-text">jq与js的关系</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用方法"><span class="nav-number">4.</span> <span class="nav-text">常用方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编写选项卡"><span class="nav-number">5.</span> <span class="nav-text">编写选项卡</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用方法-1"><span class="nav-number">6.</span> <span class="nav-text">常用方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编写弹窗"><span class="nav-number">7.</span> <span class="nav-text">编写弹窗</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#事件细节"><span class="nav-number">8.</span> <span class="nav-text">事件细节</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#位置方法"><span class="nav-number">9.</span> <span class="nav-text">位置方法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#选择元素"><span class="nav-number">1.</span> <span class="nav-text">选择元素</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#写法"><span class="nav-number">2.</span> <span class="nav-text">写法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#jq与js的关系"><span class="nav-number">3.</span> <span class="nav-text">jq与js的关系</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用方法"><span class="nav-number">4.</span> <span class="nav-text">常用方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编写选项卡"><span class="nav-number">5.</span> <span class="nav-text">编写选项卡</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用方法-1"><span class="nav-number">6.</span> <span class="nav-text">常用方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#插入位置的操作"><span class="nav-number">7.</span> <span class="nav-text">插入位置的操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编写弹窗"><span class="nav-number">8.</span> <span class="nav-text">编写弹窗</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#事件细节"><span class="nav-number">9.</span> <span class="nav-text">事件细节</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#位置方法"><span class="nav-number">10.</span> <span class="nav-text">位置方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#获取父级"><span class="nav-number">11.</span> <span class="nav-text">获取父级</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编写拖拽"><span class="nav-number">12.</span> <span class="nav-text">编写拖拽</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他常用"><span class="nav-number">13.</span> <span class="nav-text">其他常用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高级"><span class="nav-number">14.</span> <span class="nav-text">高级</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础方法扩充"><span class="nav-number">14.1.</span> <span class="nav-text">基础方法扩充</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#jq中复杂的运动"><span class="nav-number">15.</span> <span class="nav-text">jq中复杂的运动</span></a></li></ol></div>
             
 
           </div>

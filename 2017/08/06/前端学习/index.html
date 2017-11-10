@@ -95,7 +95,7 @@
 <meta property="og:description" content="每周学习记录">
 <meta property="og:image" content="https://raw.githubusercontent.com/mayufo/mayufo.github.io/master/2017/08/06/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/%C2%A0study_1.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/mayufo/mayufo.github.io/master/2017/08/06/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/%C2%A0study_2.png">
-<meta property="og:updated_time" content="2017-08-07T13:05:45.000Z">
+<meta property="og:updated_time" content="2017-08-24T16:07:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端学习自测">
 <meta name="twitter:description" content="每周学习记录">
@@ -382,8 +382,7 @@
       
         <p>每周学习记录</p>
 <a id="more"></a>
-<h3 id="如何实现一个三栏布局，要求两边固定宽度，中间自适应"><a href="#如何实现一个三栏布局，要求两边固定宽度，中间自适应" class="headerlink" title="如何实现一个三栏布局，要求两边固定宽度，中间自适应"></a>如何实现一个三栏布局，要求两边固定宽度，中间自适应</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"float: left; width: 200px; height: 400px; background: red;"</span> &gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"float: left; background: pink; width: calc(100% - 200px - 200px); height: 400px"</span> &gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"float: right; width: 200px; height: 400px; background: green;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
-<blockquote>
+<h3 id="如何实现一个三栏布局，要求两边固定宽度，中间自适应"><a href="#如何实现一个三栏布局，要求两边固定宽度，中间自适应" class="headerlink" title="如何实现一个三栏布局，要求两边固定宽度，中间自适应"></a>如何实现一个三栏布局，要求两边固定宽度，中间自适应</h3><blockquote>
 <p> 两列布局（浮动、定位、flex）和三列布局（圣杯、双飞翼、flex） <a href="http://www.cnblogs.com/mayufo/p/7299255.html" target="_blank" rel="external">http://www.cnblogs.com/mayufo/p/7299255.html</a></p>
 </blockquote>
 <ul>
@@ -406,7 +405,8 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Core</span> </span>&#123;</div><div class="line">    <span class="keyword">constructor</span>() &#123;&#125;</div><div class="line">    say(word) &#123;</div><div class="line">        <span class="built_in">console</span>.log(word)</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">const</span> core = <span class="keyword">new</span> Core</div><div class="line"></div><div class="line">core.say(<span class="string">'hello'</span>).say(<span class="string">'wore'</span>)</div></pre></td></tr></table></figure>
 <h3 id="Yslow-和-PageSpeed-你知道怎么用吗-你记得其中多少规则"><a href="#Yslow-和-PageSpeed-你知道怎么用吗-你记得其中多少规则" class="headerlink" title="Yslow 和 PageSpeed 你知道怎么用吗?你记得其中多少规则?"></a>Yslow 和 PageSpeed 你知道怎么用吗?你记得其中多少规则?</h3><p>性能优化，可以建议</p>
 <h3 id="HTTP请求头中，状态码分别是-200、301、302、304-分别代表-么意思"><a href="#HTTP请求头中，状态码分别是-200、301、302、304-分别代表-么意思" class="headerlink" title="HTTP请求头中，状态码分别是:200、301、302、304 分别代表 么意思?"></a>HTTP请求头中，状态码分别是:200、301、302、304 分别代表 么意思?</h3><p>200 代表请求成功<br>204 正常，返回为空<br>3开头的 都是重定向<br>301 永久<br>302 暂时跳转<br>304 有缓存，不需要从网上取<br>4网络请求问题<br>5服务器请求问题</p>
-<h3 id="PNG-和-JPG-有什么差别"><a href="#PNG-和-JPG-有什么差别" class="headerlink" title="PNG 和 JPG 有什么差别?"></a>PNG 和 JPG 有什么差别?</h3><p>透明度<br>图片格式 | 透明度 | 动画 | 压缩方式 | 浏览器支持 | 相对原图大小 | 适应场景<br>—-|——|—-|—-|——|—-|—-<br>baseline-jpeg | 不支持  | 不支持 | 有损 | 所有 | 画质决定 | 所有场景<br>progress-jpeg | 不支持  | 不支持 | 有损 | 所有 | 画质决定 | 实用所有，渐进加载<br>gif | 支持  | 支持 | 无损 | 所有 | 由帧数和每帧图片大小决定 | 简单颜色、动画<br>png | 支持  | 不支持 | 无损 | 所有 | 由png色值位数决定 | 需要透明时</p>
+<h3 id="PNG-和-JPG-有什么差别"><a href="#PNG-和-JPG-有什么差别" class="headerlink" title="PNG 和 JPG 有什么差别?"></a>PNG 和 JPG 有什么差别?</h3><p>图片格式 | 透明度 | 动画 | 压缩方式 | 浏览器支持 | 相对原图大小 | 适应场景 </p>
+<p>baseline-jpeg | 不支持  | 不支持 | 有损 | 所有 | 画质决定 | 所有场景<br>progress-jpeg | 不支持  | 不支持 | 有损 | 所有 | 画质决定 | 实用所有，渐进加载<br>gif | 支持  | 支持 | 无损 | 所有 | 由帧数和每帧图片大小决定 | 简单颜色、动画<br>png | 支持  | 不支持 | 无损 | 所有 | 由png色值位数决定 | 需要透明时</p>
 <blockquote>
 <p>前端图片优化机制 <a href="http://imweb.io/topic/568b20194c44bcc56092e415" target="_blank" rel="external">http://imweb.io/topic/568b20194c44bcc56092e415</a></p>
 </blockquote>
@@ -415,11 +415,11 @@
 <p>小米手机 安卓安卓手机 华为手机</p>
 <p>工程类(6懂得2)</p>
 <h3 id="你使用过构建工具来编译前端代码吗-你使用过-Grunt、Gulp、webpack、FIS-其中之一吗"><a href="#你使用过构建工具来编译前端代码吗-你使用过-Grunt、Gulp、webpack、FIS-其中之一吗" class="headerlink" title="你使用过构建工具来编译前端代码吗?你使用过 Grunt、Gulp、webpack、FIS 其中之一吗?"></a>你使用过构建工具来编译前端代码吗?你使用过 Grunt、Gulp、webpack、FIS 其中之一吗?</h3><p>使用过webpack</p>
-<h3 id="CDN是什么-为什么能资源加速"><a href="#CDN是什么-为什么能资源加速" class="headerlink" title="CDN是什么?为什么能资源加速?"></a>CDN是什么?为什么能资源加速?</h3><p><img src="https://raw.githubusercontent.com/mayufo/mayufo.github.io/master/2017/08/06/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/%C2%A0study_1.png" alt="">;</p>
+<h3 id="CDN是什么-为什么能资源加速"><a href="#CDN是什么-为什么能资源加速" class="headerlink" title="CDN是什么?为什么能资源加速?"></a>CDN是什么?为什么能资源加速?</h3><p><img src="https://raw.githubusercontent.com/mayufo/mayufo.github.io/master/2017/08/06/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/%C2%A0study_1.png" alt=""></p>
 <h3 id="你使用过React、Vue、Angular其中之一吗"><a href="#你使用过React、Vue、Angular其中之一吗" class="headerlink" title="你使用过React、Vue、Angular其中之一吗?"></a>你使用过React、Vue、Angular其中之一吗?</h3><p>使用过angular 1.x 目前再学vue 2</p>
 <h3 id="你知道前端怎么样能拿到DNS的查询时间吗"><a href="#你知道前端怎么样能拿到DNS的查询时间吗" class="headerlink" title="你知道前端怎么样能拿到DNS的查询时间吗?"></a>你知道前端怎么样能拿到DNS的查询时间吗?</h3><p>可以拿到握手时间，加载时间等等</p>
 <p>performance.timing</p>
-<p><img src="https://raw.githubusercontent.com/mayufo/mayufo.github.io/master/2017/08/06/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/%C2%A0study_2.png" alt="">;</p>
+<p><img src="https://raw.githubusercontent.com/mayufo/mayufo.github.io/master/2017/08/06/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/%C2%A0study_2.png" alt=""></p>
 <h3 id="你能拿-localStorage-来做些什么"><a href="#你能拿-localStorage-来做些什么" class="headerlink" title="你能拿 localStorage 来做些什么?"></a>你能拿 localStorage 来做些什么?</h3><p>localStorage可以用来在浏览器存储数据，记录状态<br>各种缓存<br>localStorage不可信，不能存重要数据，可能会损坏丢失，需要做好容错</p>
 <h3 id="设计一个广告系统，类似广告联盟，如何对没有登录态的用户做跟踪"><a href="#设计一个广告系统，类似广告联盟，如何对没有登录态的用户做跟踪" class="headerlink" title="设计一个广告系统，类似广告联盟，如何对没有登录态的用户做跟踪?"></a>设计一个广告系统，类似广告联盟，如何对没有登录态的用户做跟踪?</h3>
       
@@ -541,7 +541,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
